@@ -20,6 +20,9 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ Primary color: #0090C1 // 0, 145, 193
+
+ Secondary color: #38AECC // 56, 174, 204
  */
 /* Material Design Lite */
 /**
@@ -3869,11 +3872,11 @@ ul, ol {
   .mdl-button::-moz-focus-inner {
     border: 0; }
   .mdl-button:hover {
-    background-color: rgba(158,158,158, 0.20); }
+    background-color: rgba(0, 145, 193, 0.20); }
   .mdl-button:focus:not(:active) {
     background-color: rgba(0,0,0, 0.12); }
   .mdl-button:active {
-    background-color: rgba(158,158,158, 0.40); }
+    background-color: rgba(0, 145, 193, 0.40); }
   .mdl-button.mdl-button--colored {
     color: rgb(63,81,181); }
     .mdl-button.mdl-button--colored:focus:not(:active) {
@@ -3883,14 +3886,14 @@ input.mdl-button[type="submit"] {
   -webkit-appearance: none; }
 
 .mdl-button--raised {
-  background: rgba(158,158,158, 0.20);
+  background: rgba(0, 145, 193, 0.20);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
   .mdl-button--raised:active {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    background-color: rgba(158,158,158, 0.40); }
+    background-color: rgba(0, 145, 193, 0.40); }
   .mdl-button--raised:focus:not(:active) {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
-    background-color: rgba(158,158,158, 0.40); }
+    background-color: rgba(0, 145, 193, 0.40); }
   .mdl-button--raised.mdl-button--colored {
     background: rgb(63,81,181);
     color: rgb(255,255,255); }
@@ -3933,10 +3936,10 @@ input.mdl-button[type="submit"] {
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black); }
   .mdl-button--fab:active {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    background-color: rgba(158,158,158, 0.40); }
+    background-color: rgba(0, 145, 193, 0.40); }
   .mdl-button--fab:focus:not(:active) {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
-    background-color: rgba(158,158,158, 0.40); }
+    background-color: rgba(0, 145, 193, 0.40); }
   .mdl-button--fab.mdl-button--colored {
     background: rgb(255,64,129);
     color: rgb(255,255,255); }
@@ -4002,12 +4005,12 @@ input.mdl-button[type="submit"] {
     background-color: rgb(63,81,181); }
 
 .mdl-button--accent.mdl-button--accent {
-  color: rgb(255,64,129); }
+  color: rgb(0, 145, 193); }
   .mdl-button--accent.mdl-button--accent .mdl-ripple {
     background: rgb(255,255,255); }
   .mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
     color: rgb(255,255,255);
-    background-color: rgb(255,64,129); }
+    background-color: rgb(0, 145, 193); }
 
 .mdl-button[disabled][disabled], .mdl-button.mdl-button--disabled.mdl-button--disabled {
   color: rgba(0,0,0, 0.26);
@@ -7559,7 +7562,7 @@ input.mdl-button[type="submit"] {
   min-height: 64px;
   max-height: 1000px;
   z-index: 3;
-  background-color: rgb(255, 1, 1);
+  background-color: #0090C1;
   color: rgb(255,255,255);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   transition-duration: 0.2s;
