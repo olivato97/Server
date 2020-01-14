@@ -22,7 +22,7 @@
  * limitations under the License.
  Primary color: #0090C1 // 0, 145, 193
 
- Secondary color: #38AECC // 56, 174, 204
+ Secondary color: #96C5F7 // 56, 174, 204
  */
 /* Material Design Lite */
 /**
@@ -7562,7 +7562,7 @@ input.mdl-button[type="submit"] {
   min-height: 64px;
   max-height: 1000px;
   z-index: 3;
-  background-color: #0090C1;
+  background-color: linear-gradient(#0A369D, #4472CA);
   color: rgb(255,255,255);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   transition-duration: 0.2s;
