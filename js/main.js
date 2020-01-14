@@ -14,5 +14,5 @@ function loadScript(link) {
     }).fail(function() {
         console.log("Errore durante il caricamento dello script" + link);
     });
-}
+} 
 
