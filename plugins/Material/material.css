@@ -6,6 +6,10 @@
  * @link https://github.com/google/material-design-lite
  */
 @charset "UTF-8";
+:root{
+  --primary-bg-color: #0A369D;
+  --secondary-bg-color: #4472CA;
+}
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -20,10 +24,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- Primary color: #0090C1 // 0, 145, 193
+ Primary color: #0A369D // 10, 54, 157
 
- Secondary color: #96C5F7 // 56, 174, 204
+ Secondary color: #4472CA // 68, 114, 202
  */
+ 
 /* Material Design Lite */
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
@@ -1391,6 +1396,7 @@ ul, ol {
 /* SNACKBAR */
 /* TOOLTIP */
 /* CHIP */
+
 .mdl-color-text--red {
   color: rgb(244,67,54) !important; }
 
@@ -3642,14 +3648,14 @@ ul, ol {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: rgb(255,64,129);
+    background: var(--secondary-bg-color);
     color: rgb(255,255,255); }
     .mdl-button .mdl-badge[data-badge]:after {
       top: -10px;
       right: -5px; }
   .mdl-badge.mdl-badge--no-background[data-badge]:after {
     color: rgb(255,64,129);
-    background: rgba(255,255,255,0.2);
+    background: rgba(var(--secondary-bg-color),0.2);
     box-shadow: 0 0 1px gray; }
   .mdl-badge.mdl-badge--overlap {
     margin-right: 10px; }
@@ -3872,11 +3878,11 @@ ul, ol {
   .mdl-button::-moz-focus-inner {
     border: 0; }
   .mdl-button:hover {
-    background-color: rgba(0, 145, 193, 0.20); }
+    background-color: rgba(var(--primary-bg-color), 0.20); }
   .mdl-button:focus:not(:active) {
     background-color: rgba(0,0,0, 0.12); }
   .mdl-button:active {
-    background-color: rgba(0, 145, 193, 0.40); }
+    background-color: rgba(var(--primary-bg-color), 0.40); }
   .mdl-button.mdl-button--colored {
     color: rgb(63,81,181); }
     .mdl-button.mdl-button--colored:focus:not(:active) {
@@ -3886,11 +3892,11 @@ input.mdl-button[type="submit"] {
   -webkit-appearance: none; }
 
 .mdl-button--raised {
-  background: rgba(0, 145, 193, 0.20);
+  background: rgba(var(--primary-bg-color), 0.20);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
   .mdl-button--raised:active {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    background-color: rgba(0, 145, 193, 0.40); }
+    background-color: rgba(var(--primary-bg-color), 0.40); }
   .mdl-button--raised:focus:not(:active) {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
     background-color: rgba(0, 145, 193, 0.40); }
@@ -3936,10 +3942,12 @@ input.mdl-button[type="submit"] {
     -webkit-mask-image: -webkit-radial-gradient(circle, white, black); }
   .mdl-button--fab:active {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    background-color: rgba(0, 145, 193, 0.40); }
+    background-color: rgba(var(--primary-bg-color)
+, 0.40); }
   .mdl-button--fab:focus:not(:active) {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
-    background-color: rgba(0, 145, 193, 0.40); }
+    background-color: rgba(var(--primary-bg-color)
+, 0.40); }
   .mdl-button--fab.mdl-button--colored {
     background: rgb(255,64,129);
     color: rgb(255,255,255); }
@@ -4010,7 +4018,7 @@ input.mdl-button[type="submit"] {
     background: rgb(255,255,255); }
   .mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
     color: rgb(255,255,255);
-    background-color: rgb(0, 145, 193); }
+    background-color:var(--primary-bg-color); }
 
 .mdl-button[disabled][disabled], .mdl-button.mdl-button--disabled.mdl-button--disabled {
   color: rgba(0,0,0, 0.26);
@@ -7436,8 +7444,8 @@ input.mdl-button[type="submit"] {
   left: 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
-  border-right: 1px solid rgb(224,224,224);
-  background: rgb(250,250,250);
+  border-right: 1px solid rgba(var(--secondary-bg-color),0.8);
+  background: var(--secondary-bg-color);
   -webkit-transform: translateX(-250px);
           transform: translateX(-250px);
   -webkit-transform-style: preserve-3d;
@@ -7448,7 +7456,7 @@ input.mdl-button[type="submit"] {
   transition-property: -webkit-transform;
   transition-property: transform;
   transition-property: transform, -webkit-transform;
-  color: rgb(66,66,66);
+  color: rgb(255, 255, 255);
   overflow: visible;
   overflow-y: auto;
   z-index: 5; }
@@ -7485,7 +7493,7 @@ input.mdl-button[type="submit"] {
               flex-shrink: 0;
       padding: 16px 40px;
       margin: 0;
-      color: #757575; }
+      color: #ffffff; }
       @media screen and (max-width: 1024px) {
         .mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
           padding: 16px 16px; } }
@@ -7493,7 +7501,7 @@ input.mdl-button[type="submit"] {
         background-color: rgb(224,224,224); }
       .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
         background-color: rgb(224,224,224);
-        color: rgb(0,0,0); }
+        color: rgb(255, 255, 255); }
   @media screen and (min-width: 1025px) {
     .mdl-layout--fixed-drawer > .mdl-layout__drawer {
       -webkit-transform: translateX(0);
@@ -7562,7 +7570,7 @@ input.mdl-button[type="submit"] {
   min-height: 64px;
   max-height: 1000px;
   z-index: 3;
-  background: linear-gradient(#0A369D, #4472CA);
+  background: linear-gradient(var(--primary-bg-color), var(--secondary-bg-color));
   color: rgb(255,255,255);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   transition-duration: 0.2s;
