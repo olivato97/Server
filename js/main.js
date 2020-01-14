@@ -2,6 +2,7 @@
 File main globale con metodi di utlità a tutte le pagine
 */
 
+// Variabili Globali
 var attivaConsoleLog = true;
 
 
@@ -9,10 +10,14 @@ var attivaConsoleLog = true;
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole caricare
 function loadScript(link) {
-    $.getScript(link, function( data ) {
-        console.log("Script '" + link + "' caricato con successo");
+    $.getScript(link, function() {
+        if (attivaConsoleLog) {
+            console.log("Script '" + link + "' caricato con successo");
+        }
     }).fail(function() {
-        console.log("Errore durante il caricamento dello script" + link);
+        if (attivaConsoleLog) {
+            console.log("Errore durante il caricamento dello script" + link);            
+        }
     });
 } 
 
