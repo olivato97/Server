@@ -10,13 +10,13 @@ var attivaConsoleLog = true;
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole caricare
 function loadScript(link) {
-    $.getScript(link, function() {
+    $.getScript(link, function () {
         if (attivaConsoleLog) {
             console.log("Script '" + link + "' caricato con successo");
         }
-    }).fail(function() {
+    }).fail(function () {
         if (attivaConsoleLog) {
-            console.log("Errore durante il caricamento dello script" + link);            
+            console.log("Errore durante il caricamento dello script" + link);
         }
     });
 }
@@ -85,3 +85,14 @@ function popupFailure(msg) {
     }, 2000);
 }
 
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+
+    document.body.style.backgroundColor = "white";
+}
