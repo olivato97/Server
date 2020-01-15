@@ -8,6 +8,7 @@
     <link rel="icon" href="https://i.pinimg.com/originals/97/62/a5/9762a53ccc777ca0edb6a1d2717b8c6c.png">
     <title>Moaschetto</title>
     <link rel="stylesheet" href="/plugins/Material/material.css">
+    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
@@ -37,11 +38,14 @@
         <main class="mdl-layout__content">
             <div class="page-content">
                 <!-- Your content goes here -->
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                <button id="ciao" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                     Button
                 </button>
             </div>
         </main>
+
+        <div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"> Success Message</div>
+
     </div>
     
     
@@ -54,8 +58,12 @@
         loadScript("/plugins/Material/material.min.js");
         loadScript("/plugins/bootstrap/js/bootstrap.min.js");
         loadScript("/plugins/popper/popper.min.js");
-        loadScript("/plugins/bootbox/bootbox.all.min.js");
+        loadScript("/plugins/bootbox/bootbox.min.js");
+        loadScript("/plugins/bootbox/bootbox.locales.min.js");
 
+        $('#ciao').on('click', function () {
+            $("#success-alert").show();
+        });
 
     });
 
