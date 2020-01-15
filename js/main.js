@@ -63,20 +63,21 @@ function popupSuccess(msg) {
     console.log(msg);
     //var alertWrapper = $('.alert-wrapper');
     //alertWrapper.append('<div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"></div>');
-    $('#success-alert').append("Operazione avvenuta con successo. " + (!msg ? ' ' : msg));
-    $('#success-alert').fadeIn('slow');
-    setTimeout(function () {
-        $('#success-alert').fadeOut('slow', function () {
-            $(this).html('');
-        });
-    }, 2000);
+    $('#success-alert').append("Operazione avvenuta con successo. " + (!msg ? ' ' : msg) + "<br/>");
+    $('#success-alert').fadeIn('slow', () => {
+        setTimeout(function () {
+            $('#success-alert').fadeOut('slow', function () {
+                $(this).html('');
+            });
+        }, 2000);
+    });
 }
 
 
 // Mostra una bootbox di errore durante un'operazione
 // Può essere passato anche un messaggio da mostrare
 function popupFailure(msg) {
-    $('#failure-alert').append("Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + (!msg ? ' ' : msg));
+    $('#failure-alert').append("Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + (!msg ? ' ' : msg)+ "<br/>");
     $('#failure-alert').fadeIn('slow');
     setTimeout(function () {
         $('#failure-alert').fadeOut('slow', function () {
@@ -87,12 +88,14 @@ function popupFailure(msg) {
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    document.getElementById("wrap").style.display = "block"
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-
-    document.body.style.backgroundColor = "white";
+    document.getElementById("wrap").style.display = "none"
 }
+$("#wrap").on("click", function () {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("wrap").style.display = "none"
+});
