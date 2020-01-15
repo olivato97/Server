@@ -16,31 +16,23 @@
 
 <body>
     <div class="alert-wrapper">
-        <div class="alert alert-success" id="success-alert"
-            style="display:none; position: absolute; top: 25%; z-index: 1000;left: calc( 50% - 130px); margin-bottom: 50%;"></div>
-        <div class="alert alert-danger" id="failure-alert"
-            style="display:none; position: absolute; top: 25%; z-index: 1000;left: calc( 50% - 130px); margin-bottom: 50%;"></div>
+        <div class="alert alert-success" id="success-alert"></div>
+        <div class="alert alert-danger" id="failure-alert"></div>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="#">Features</a>
                 <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
             </div>
         </div>
     </nav>
     <div id="wrap" class="wrap"></div>
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Clients</a>
@@ -49,8 +41,7 @@
     <div id="main"></div>
     <button id="ciao" type="button" class="btn btn-primary">Primary</button>
     <div class="dropdown">
-        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">more_vert</i>
         </button>
         <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
@@ -71,7 +62,7 @@
 <script src="/plugins/bootbox/bootbox.locales.min.js"></script>
 <script src="js/main.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // loadScript("/plugins/bootstrap-material-design-dist/js/bootstrap-material-design.js");
         // loadScript("/plugins/bootstrap/js/bootstrap.min.js");
         // loadScript("/plugins/popper/popper.min.js");
@@ -79,12 +70,11 @@
         // loadScript("/plugins/bootbox/bootbox.locales.min.js");
 
         var i = 0;
-        $('#ciao').on('click', function () {
+        $('#ciao').on('click', function() {
             popupSuccess(i);
             i = i + 1;
         });
     });
-
 </script>
 
 </html>
