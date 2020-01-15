@@ -60,16 +60,28 @@ function downloadRisorsa(idUtente, tipoRisorsa, idRisorsa) {
 // Mostra una bootbox di operazione avvenuta correttamente
 // Può essere passato anche un messaggio da mostrare
 function popupSuccess(msg) {
-    bootbox.alert({
-        message: "Operazione avvenuta con successo. " + !msg ? ' ' : msg
-    });
+    console.log(msg);
+    //var alertWrapper = $('.alert-wrapper');
+    //alertWrapper.append('<div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"></div>');
+    $('#success-alert').append("Operazione avvenuta con successo. " + (!msg ? ' ' : msg));
+    $('#success-alert').fadeIn('slow');
+    setTimeout(function () {
+        $('#success-alert').fadeOut('slow', function () {
+            $(this).html('');
+        });
+    }, 2000);
 }
 
 
 // Mostra una bootbox di errore durante un'operazione
 // Può essere passato anche un messaggio da mostrare
 function popupFailure(msg) {
-    bootbox.alert({
-        message: "Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + !msg ? ' ' : msg
-    });
+    $('#failure-alert').append("Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + (!msg ? ' ' : msg));
+    $('#failure-alert').fadeIn('slow');
+    setTimeout(function () {
+        $('#failure-alert').fadeOut('slow', function () {
+            $(this).html('');
+        });
+    }, 2000);
 }
+

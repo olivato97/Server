@@ -13,6 +13,10 @@
 </head>
 
 <body>
+    <div class="alert-wrapper">
+        <div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"></div>
+        <div class="alert alert-danger" id="failure-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"></div>
+    </div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -43,11 +47,8 @@
                 </button>
             </div>
         </main>
-
-        <div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"> Success Message</div>
-
-    </div>
     
+    </div>
     
 </body>
 
@@ -61,10 +62,11 @@
         loadScript("/plugins/bootbox/bootbox.min.js");
         loadScript("/plugins/bootbox/bootbox.locales.min.js");
 
+        var i = 0;
         $('#ciao').on('click', function () {
-            $("#success-alert").show();
+            popupSuccess(i);
+            i = i+1;
         });
-
     });
 
 </script>
