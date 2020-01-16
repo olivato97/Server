@@ -1,17 +1,15 @@
 /*
 File main globale con metodi di utlità a tutte le pagine
 */
-
 // Variabili Globali
 var attivaConsoleLog = true;
-
 
 // Inserisce uno script nell'head della pagina
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole caricare
 function loadScript(link) {
     var newscript;
-    var len = $('script').filter(function () {
+    var len = $('script').filter(function() {
         return ($(this).attr('src') == link);
     }).length;
     if (+len === 0) {
@@ -29,7 +27,7 @@ function loadScript(link) {
 // dello script che si vuole rimuovere
 function removeScript(link) {
     var newscript;
-    var script = $('script').filter(function () {
+    var script = $('script').filter(function() {
         return ($(this).attr('src') == link);
     });
     if (script.length > 0) {
@@ -55,7 +53,7 @@ function downloadRisorsa(idUtente, tipoRisorsa, idRisorsa) {
         url: "/Controller/NomeController.php",
         cache: false,
         data: objParam
-    }).done(function (data) {
+    }).done(function(data) {
         var obj = JSON.parse(data);
         if (obj.status) {
             var link = document.createElement("a");
@@ -120,17 +118,17 @@ function timeEventPersitentNotify(msg, time) {
         icon: 'fa fa-info'
     }, {
         // settings
-            type: 'info',
-            placement: {
-                from: "bottom",
-                align: "right"
-            },
-            mouse_over: null,
-            delay: time * 1000, //tempo durata evento
-            time: 1000, //update tempo durata
-            showProgressbar: true,
-            allow_dismiss: false,
-            onClosed: callbackFunction,
+        type: 'info',
+        placement: {
+            from: "bottom",
+            align: "right"
+        },
+        mouse_over: null,
+        delay: time * 1000, //tempo durata evento
+        time: 1000, //update tempo durata
+        showProgressbar: true,
+        allow_dismiss: false,
+        onClosed: callbackFunction,
         z_index: 1250
     });
 }
@@ -162,8 +160,8 @@ function popupSuccess(msg) {
     //alertWrapper.append('<div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"></div>');
     $('#success-alert').append("Operazione avvenuta con successo. " + (!msg ? ' ' : msg) + "<br/>");
     $('#success-alert').fadeIn('slow', () => {
-        setTimeout(function () {
-            $('#success-alert').fadeOut('slow', function () {
+        setTimeout(function() {
+            $('#success-alert').fadeOut('slow', function() {
                 $(this).html('');
             });
         }, 2000);
@@ -174,10 +172,10 @@ function popupSuccess(msg) {
 // Mostra una bootbox di errore durante un'operazione
 // Può essere passato anche un messaggio da mostrare
 function popupFailure(msg) {
-    $('#failure-alert').append("Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + (!msg ? ' ' : msg)+ "<br/>");
+    $('#failure-alert').append("Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + (!msg ? ' ' : msg) + "<br/>");
     $('#failure-alert').fadeIn('slow');
-    setTimeout(function () {
-        $('#failure-alert').fadeOut('slow', function () {
+    setTimeout(function() {
+        $('#failure-alert').fadeOut('slow', function() {
             $(this).html('');
         });
     }, 2000);
@@ -192,7 +190,101 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("wrap").style.display = "none"
 }
-$("#wrap").on("click", function () {
+$("#Wrap").on("click", function() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("wrap").style.display = "none"
+});
+var i = {
+    SingUpForms: {
+        label: 'Sing Up',
+        className: 'btn-primary',
+        callback: function(result) {
+            if (result) {
+                let message = '<div id="LogInForms"> <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Name</label> <input type="text" class="form-control mb-2" id="Username" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="Password" placeholder="Password"> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Sign Up</button> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Log in</button> </div> </div> </div>'
+
+                Bootbox(message)
+            }
+        }
+    },
+    LogInForms: {
+        label: 'Log In',
+        className: 'btn-primary',
+        callback: function(result) {
+            if (result) {
+                let username = $("#Username").val();
+                let password = $("#Password").val();
+
+                successNotify(username + " " + password)
+            }
+        }
+    },
+};
+
+function Bootbox(message = " ", title = " ", buttons = {}) {
+    bootbox.dialog({
+        title: title,
+        className: 'bootboxStyle',
+        centerVertical: true,
+        message: message,
+        size: 'medium',
+        buttons: buttons
+    });
+}
+$("#LogInForm").on("click", () => {
+    let title = "Log In";
+    let message = ' <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Username</label> <input type="text" class="form-control mb-2" id="UsernameLogin" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="PasswordLogin" placeholder="Password"> </div> </div>'
+    let buttons = {
+        SingUpForms: {
+            label: 'Sing Up',
+            className: 'btn-primary',
+            callback: function(result) {
+                if (result) {
+                    let title2 = "Sign Up";
+                    let message2 = ' <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Username</label> <input type="text" class="form-control mb-2" id="UsernameSignup" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="PasswordSignup" placeholder="Password"> </div> </div>'
+                    let buttons2 = {
+                        LogInForms: {
+                            label: 'Sign Up',
+                            className: 'btn-primary',
+                            callback: function(result) {
+                                if (result) {
+                                    let usernameSignup = $("#UsernameSignup").val();
+                                    let passwordSignup = $("#PasswordSignup").val();
+
+                                    successNotify(usernameSignup + " " + passwordSignup)
+                                }
+                            }
+                        },
+                    };
+                    Bootbox(message2, title2, buttons2)
+                }
+            }
+        },
+        LogInForms: {
+            label: 'Log In',
+            className: 'btn-primary',
+            callback: function(result) {
+                if (result) {
+                    let usernameLogin = $("#UsernameLogin").val();
+                    let passwordLogin = $("#PasswordLogin").val();
+
+                    successNotify(usernameLogin + " " + passwordLogin)
+                }
+            }
+        },
+    };
+    Bootbox(message, title, buttons)
+})
+$("#SignUpForm").on("click", () => {
+    let message = '<div id="LogInForms"> <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Name</label> <input type="text" class="form-control mb-2" id="Username" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="Password" placeholder="Password"> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Sign Up</button> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Log in</button> </div> </div> </div>'
+    Bootbox(message)
+})
+
+$("#LogIn").on("click", () => {
+    let username = $("#Username").val();
+    let password = $("#Password").val();
+
+    successNotify(username + " " + password)
+});
+$("#SignUp").on("click", () => {
+
 });
