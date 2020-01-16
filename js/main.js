@@ -79,7 +79,7 @@ function infoNotify(msg) {
     jo.msg = msg;
     jo.type = 'info';
     jo.icon = 'fa fa-15x fa-info';
-    edulifeNotify(jo);
+    functionNotify(jo);
 }
 
 function warningNotify(msg) {
@@ -87,7 +87,7 @@ function warningNotify(msg) {
     jo.msg = msg;
     jo.type = 'warning';
     jo.icon = 'fa fa-15x fa-exclamation-triangle';
-    edulifeNotify(jo);
+    functionNotify(jo);
 }
 
 function dangerNotify(msg) {
@@ -95,7 +95,7 @@ function dangerNotify(msg) {
     jo.msg = msg;
     jo.type = 'danger';
     jo.icon = 'fa fa-15x fa-exclamation';
-    edulifeNotify(jo);
+    functionNotify(jo);
 }
 
 function successNotify(msg) {
@@ -103,7 +103,7 @@ function successNotify(msg) {
     jo.msg = msg;
     jo.type = 'success';
     jo.icon = 'fa fa-15x fa-info';
-    edulifeNotify(jo);
+    functionNotify(jo);
 }
 
 function timeEventPersitentNotify(msg, time) {
@@ -135,7 +135,7 @@ function timeEventPersitentNotify(msg, time) {
     });
 }
 
-function edulifeNotify(objNotify) {
+function functionNotify(objNotify) {
     //boostrap notify. Vedi http://bootstrap-notify.remabledesigns.com/
     $.notify({
         // options
