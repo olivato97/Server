@@ -18,10 +18,6 @@ Contiene tutti gli stili più generali del sito
     color: white;
 }
 
-.bootboxStyle {
-    background-color: var(--secondary-bg-color);
-}
-
 .alert-success {
     display: none;
     position: absolute;
