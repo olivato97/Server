@@ -12,13 +12,13 @@ var attivaConsoleLog = true;
 function loadScript(link) {
     var newscript;
     var len = $('script').filter(function () {
-        return ($(this).attr('src') == url);
+        return ($(this).attr('src') == link);
     }).length;
     if (+len === 0) {
         newscript = document.createElement('script');
         newscript.type = 'text/javascript';
         newscript.async = true;
-        newscript.src = url;
+        newscript.src = link;
         $('head').append(newscript);
     }
 }
@@ -27,10 +27,10 @@ function loadScript(link) {
 // Rimuove uno script nell'head della pagina
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole rimuovere
-function removeScript(url) {
+function removeScript(link) {
     var newscript;
     var script = $('script').filter(function () {
-        return ($(this).attr('src') == url);
+        return ($(this).attr('src') == link);
     });
     if (script.length > 0) {
         $(script).remove();
