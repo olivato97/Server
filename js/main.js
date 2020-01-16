@@ -6,19 +6,35 @@ File main globale con metodi di utlità a tutte le pagine
 var attivaConsoleLog = true;
 
 
-// Wrapper per la funzione jQuery getScript
+// Inserisce uno script nell'head della pagina
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole caricare
 function loadScript(link) {
-    $.getScript(link, function () {
-        if (attivaConsoleLog) {
-            console.log("Script '" + link + "' caricato con successo");
-        }
-    }).fail(function () {
-        if (attivaConsoleLog) {
-            console.log("Errore durante il caricamento dello script" + link);
-        }
+    var newscript;
+    var len = $('script').filter(function () {
+        return ($(this).attr('src') == url);
+    }).length;
+    if (+len === 0) {
+        newscript = document.createElement('script');
+        newscript.type = 'text/javascript';
+        newscript.async = true;
+        newscript.src = url;
+        $('head').append(newscript);
+    }
+}
+
+
+// Rimuove uno script nell'head della pagina
+// il parametro passato è una stringa che corrisponde al path
+// dello script che si vuole rimuovere
+function removeScript(url) {
+    var newscript;
+    var script = $('script').filter(function () {
+        return ($(this).attr('src') == url);
     });
+    if (script.length > 0) {
+        $(script).remove();
+    }
 }
 
 
@@ -56,6 +72,87 @@ function downloadRisorsa(idUtente, tipoRisorsa, idRisorsa) {
 
 }
 
+
+// BOOTSTRAP NOTIFY
+function infoNotify(msg) {
+    var jo = {};
+    jo.msg = msg;
+    jo.type = 'info';
+    jo.icon = 'fa fa-15x fa-info';
+    edulifeNotify(jo);
+}
+
+function warningNotify(msg) {
+    var jo = {};
+    jo.msg = msg;
+    jo.type = 'warning';
+    jo.icon = 'fa fa-15x fa-exclamation-triangle';
+    edulifeNotify(jo);
+}
+
+function dangerNotify(msg) {
+    var jo = {};
+    jo.msg = msg;
+    jo.type = 'danger';
+    jo.icon = 'fa fa-15x fa-exclamation';
+    edulifeNotify(jo);
+}
+
+function successNotify(msg) {
+    var jo = {};
+    jo.msg = msg;
+    jo.type = 'success';
+    jo.icon = 'fa fa-15x fa-info';
+    edulifeNotify(jo);
+}
+
+function timeEventPersitentNotify(msg, time) {
+    var jo = {};
+    // time è in secondi
+    function callbackFunction() {
+        //qui deve informare che il tempoè scaduto
+        bootbox.alert('tempo scaduto');
+    }
+
+    $.notify({
+        // options
+        message: msg,
+        icon: 'fa fa-info'
+    }, {
+        // settings
+            type: 'info',
+            placement: {
+                from: "bottom",
+                align: "right"
+            },
+            mouse_over: null,
+            delay: time * 1000, //tempo durata evento
+            time: 1000, //update tempo durata
+            showProgressbar: true,
+            allow_dismiss: false,
+            onClosed: callbackFunction,
+        z_index: 1250
+    });
+}
+
+function edulifeNotify(objNotify) {
+    //boostrap notify. Vedi http://bootstrap-notify.remabledesigns.com/
+    $.notify({
+        // options
+        message: '<b>' + objNotify.msg + '</b>',
+        icon: objNotify.icon
+    }, {
+        // settings
+        type: objNotify.type,
+        mouse_over: 'pause',
+        delay: 7500,
+        z_index: 1250,
+        placement: {
+            from: 'top',
+            align: 'center'
+        }
+    });
+}
 
 // Mostra una bootbox di operazione avvenuta correttamente
 // Può essere passato anche un messaggio da mostrare

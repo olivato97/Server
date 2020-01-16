@@ -9,7 +9,7 @@
     <title>Moaschetto</title>
     <link rel="stylesheet" href="/plugins/bootstrap-material-design-dist/css/bootstrap-material-design.css">
     <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -56,24 +56,20 @@
 </body>
 
 <script src="/plugins/jquery/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/plugins/bootbox/bootbox.min.js"></script>
-<script src="/plugins/bootbox/bootbox.locales.min.js"></script>
+<script src="/plugins/bootbox/bootbox.locales.min.js"></script> -->
 <script src="js/main.js"></script>
 <script>
     $(document).ready(function() {
-        // loadScript("/plugins/bootstrap-material-design-dist/js/bootstrap-material-design.js");
-        // loadScript("/plugins/bootstrap/js/bootstrap.min.js");
-        // loadScript("/plugins/popper/popper.min.js");
-        // loadScript("/plugins/bootbox/bootbox.min.js");
-        // loadScript("/plugins/bootbox/bootbox.locales.min.js");
+        loadScript('/plugins/bootstrap-notify/bootstrap-notify.min.js');
+        loadScript("/plugins/bootstrap-material-design-dist/js/bootstrap-material-design.js");
+        loadScript("/plugins/bootstrap/js/bootstrap.min.js");
+        loadScript("/plugins/popper/popper.min.js");
+        loadScript("/plugins/bootbox/bootbox.min.js");
+        loadScript("/plugins/bootbox/bootbox.locales.min.js");
 
-        var i = 0;
-        $('#ciao').on('click', function() {
-            popupSuccess(i);
-            i = i + 1;
-        });
     });
 </script>
 
