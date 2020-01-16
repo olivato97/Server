@@ -194,32 +194,8 @@ $("#Wrap").on("click", function() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("wrap").style.display = "none"
 });
-var i = {
-    SingUpForms: {
-        label: 'Sing Up',
-        className: 'btn-primary',
-        callback: function(result) {
-            if (result) {
-                let message = '<div id="LogInForms"> <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Name</label> <input type="text" class="form-control mb-2" id="Username" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="Password" placeholder="Password"> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Sign Up</button> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Log in</button> </div> </div> </div>'
 
-                Bootbox(message)
-            }
-        }
-    },
-    LogInForms: {
-        label: 'Log In',
-        className: 'btn-primary',
-        callback: function(result) {
-            if (result) {
-                let username = $("#Username").val();
-                let password = $("#Password").val();
-
-                successNotify(username + " " + password)
-            }
-        }
-    },
-};
-
+//funzione base per la creazione delle Bootbox per il LogIn e SignUp
 function Bootbox(message = " ", title = " ", buttons = {}) {
     bootbox.dialog({
         title: title,
@@ -230,14 +206,16 @@ function Bootbox(message = " ", title = " ", buttons = {}) {
         buttons: buttons
     });
 }
+//funzione chiamata per fare il LogIn o il SingUp
 $("#LogInForm").on("click", () => {
     let title = "Log In";
     let message = ' <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Username</label> <input type="text" class="form-control mb-2" id="UsernameLogin" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="PasswordLogin" placeholder="Password"> </div> </div>'
     let buttons = {
         SingUpForms: {
-            label: 'Sing Up',
+            label: 'Sign Up',
             className: 'btn-primary',
             callback: function(result) {
+                //se l'utente clicca sul pulsate di Sign Up viene chiusa la bootbox precedente e viene caricata quella sotto con i paramteri necessari
                 if (result) {
                     let title2 = "Sign Up";
                     let message2 = ' <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Username</label> <input type="text" class="form-control mb-2" id="UsernameSignup" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="PasswordSignup" placeholder="Password"> </div> </div>'
@@ -274,17 +252,3 @@ $("#LogInForm").on("click", () => {
     };
     Bootbox(message, title, buttons)
 })
-$("#SignUpForm").on("click", () => {
-    let message = '<div id="LogInForms"> <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Name</label> <input type="text" class="form-control mb-2" id="Username" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="Password" placeholder="Password"> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Sign Up</button> </div> <div class="col-6"> <button type="submit" id="Submit" class="btn btn-primary mb-2">Log in</button> </div> </div> </div>'
-    Bootbox(message)
-})
-
-$("#LogIn").on("click", () => {
-    let username = $("#Username").val();
-    let password = $("#Password").val();
-
-    successNotify(username + " " + password)
-});
-$("#SignUp").on("click", () => {
-
-});
