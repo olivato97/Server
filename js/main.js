@@ -152,35 +152,6 @@ function functionNotify(objNotify) {
     });
 }
 
-// Mostra una bootbox di operazione avvenuta correttamente
-// Può essere passato anche un messaggio da mostrare
-function popupSuccess(msg) {
-    console.log(msg);
-    //var alertWrapper = $('.alert-wrapper');
-    //alertWrapper.append('<div class="alert alert-success" id="success-alert" style="display:none; position: absolute; top: 10%; left: 50%; z-index: 1000;"></div>');
-    $('#success-alert').append("Operazione avvenuta con successo. " + (!msg ? ' ' : msg) + "<br/>");
-    $('#success-alert').fadeIn('slow', () => {
-        setTimeout(function() {
-            $('#success-alert').fadeOut('slow', function() {
-                $(this).html('');
-            });
-        }, 2000);
-    });
-}
-
-
-// Mostra una bootbox di errore durante un'operazione
-// Può essere passato anche un messaggio da mostrare
-function popupFailure(msg) {
-    $('#failure-alert').append("Errore durante l'operazione.<br />Contattare un amministratore ed indicare il seguente codice: " + (!msg ? ' ' : msg) + "<br/>");
-    $('#failure-alert').fadeIn('slow');
-    setTimeout(function() {
-        $('#failure-alert').fadeOut('slow', function() {
-            $(this).html('');
-        });
-    }, 2000);
-}
-
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("wrap").style.display = "block"
@@ -206,10 +177,19 @@ function Bootbox(message = " ", title = " ", buttons = {}) {
         buttons: buttons
     });
 }
+
 //funzione chiamata per fare il LogIn o il SingUp
 $("#LogInForm").on("click", () => {
     let title = "Log In";
-    let message = ' <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Username</label> <input type="text" class="form-control mb-2" id="UsernameLogin" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="PasswordLogin" placeholder="Password"> </div> </div>'
+    let message = 
+    '<div class="form-row align-items-center">'+
+    '    <div class="col-12">'+
+    '        <label class="sr-only" for="inlineFormInput">Username</label>'+
+    '        <input type="text" class="form-control mb-2" id="UsernameLogin" placeholder="Username"> </div>'+
+    '    <div class="col-12">'+
+    '        <label class="sr-only" for="inlineFormInputGroup">Password</label>'+
+    '        <input type="password" class="form-control" id="PasswordLogin" placeholder="Password"> </div>'+
+    '</div>';
     let buttons = {
         SingUpForms: {
             label: 'Sign Up',
@@ -218,7 +198,15 @@ $("#LogInForm").on("click", () => {
                 //se l'utente clicca sul pulsate di Sign Up viene chiusa la bootbox precedente e viene caricata quella sotto con i paramteri necessari
                 if (result) {
                     let title2 = "Sign Up";
-                    let message2 = ' <div class="form-row align-items-center"> <div class="col-12"> <label class="sr-only" for="inlineFormInput">Username</label> <input type="text" class="form-control mb-2" id="UsernameSignup" placeholder="Username"> </div> <div class="col-12"> <label class="sr-only" for="inlineFormInputGroup">Password</label> <input type="password" class="form-control" id="PasswordSignup" placeholder="Password"> </div> </div>'
+                    let message2 = 
+                    '<div class="form-row align-items-center">'+
+                    '    <div class="col-12">'+
+                    '        <label class="sr-only" for="inlineFormInput">Username</label>'+
+                    '        <input type="text" class="form-control mb-2" id="UsernameSignup" placeholder="Username"> </div>'+
+                    '    <div class="col-12">'+
+                    '        <label class="sr-only" for="inlineFormInputGroup">Password</label>'+
+                    '        <input type="password" class="form-control" id="PasswordSignup" placeholder="Password"> </div>'+
+                    '</div>';
                     let buttons2 = {
                         LogInForms: {
                             label: 'Sign Up',
@@ -227,13 +215,12 @@ $("#LogInForm").on("click", () => {
                                 if (result) {
                                     let usernameSignup = $("#UsernameSignup").val();
                                     let passwordSignup = $("#PasswordSignup").val();
-
-                                    successNotify(usernameSignup + " " + passwordSignup)
+                                    successNotify(usernameSignup + " " + passwordSignup);
                                 }
                             }
                         },
                     };
-                    Bootbox(message2, title2, buttons2)
+                    Bootbox(message2, title2, buttons2);
                 }
             }
         },
@@ -244,11 +231,10 @@ $("#LogInForm").on("click", () => {
                 if (result) {
                     let usernameLogin = $("#UsernameLogin").val();
                     let passwordLogin = $("#PasswordLogin").val();
-
-                    successNotify(usernameLogin + " " + passwordLogin)
+                    successNotify(usernameLogin + " " + passwordLogin);
                 }
             }
         },
     };
-    Bootbox(message, title, buttons)
-})
+    Bootbox(message, title, buttons);
+});
