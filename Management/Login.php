@@ -12,8 +12,6 @@ class Login {
 
     public function eseguiLogIn($username, $password) {
         $utente = new Utente();
-        $utente->setNome("Michele");
-        $utente->setCognome("Bertolotto");
         return json_encode($utente);
     }
 
