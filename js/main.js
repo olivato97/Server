@@ -3,7 +3,6 @@ File main globale con metodi di utlità a tutte le pagine
 */
 // Variabili Globali
 var attivaConsoleLog = true;
-
 // Inserisce uno script nell'head della pagina
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole caricare
@@ -161,9 +160,8 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("wrap").style.display = "none"
 }
-$("#Wrap").on("click", function() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("wrap").style.display = "none"
+$("#wrap").on("click", function() {
+    closeNav()
 });
 
 //funzione base per la creazione delle Bootbox per il LogIn e SignUp
@@ -181,15 +179,15 @@ function Bootbox(message = " ", title = " ", buttons = {}) {
 //funzione chiamata per fare il LogIn o il SingUp
 $("#LogInForm").on("click", () => {
     let title = "Log In";
-    let message = 
-    '<div class="form-row align-items-center">'+
-    '    <div class="col-12">'+
-    '        <label class="sr-only" for="inlineFormInput">Username</label>'+
-    '        <input type="text" class="form-control mb-2" id="UsernameLogin" placeholder="Username"> </div>'+
-    '    <div class="col-12">'+
-    '        <label class="sr-only" for="inlineFormInputGroup">Password</label>'+
-    '        <input type="password" class="form-control" id="PasswordLogin" placeholder="Password"> </div>'+
-    '</div>';
+    let message =
+        '<div class="form-row align-items-center">' +
+        '    <div class="col-12">' +
+        '        <label class="sr-only" for="inlineFormInput">Username</label>' +
+        '        <input type="text" class="form-control mb-2" id="UsernameLogin" placeholder="Username"> </div>' +
+        '    <div class="col-12">' +
+        '        <label class="sr-only" for="inlineFormInputGroup">Password</label>' +
+        '        <input type="password" class="form-control" id="PasswordLogin" placeholder="Password"> </div>' +
+        '</div>';
     let buttons = {
         SingUpForms: {
             label: 'Sign Up',
@@ -198,15 +196,15 @@ $("#LogInForm").on("click", () => {
                 //se l'utente clicca sul pulsate di Sign Up viene chiusa la bootbox precedente e viene caricata quella sotto con i paramteri necessari
                 if (result) {
                     let title2 = "Sign Up";
-                    let message2 = 
-                    '<div class="form-row align-items-center">'+
-                    '    <div class="col-12">'+
-                    '        <label class="sr-only" for="inlineFormInput">Username</label>'+
-                    '        <input type="text" class="form-control mb-2" id="UsernameSignup" placeholder="Username"> </div>'+
-                    '    <div class="col-12">'+
-                    '        <label class="sr-only" for="inlineFormInputGroup">Password</label>'+
-                    '        <input type="password" class="form-control" id="PasswordSignup" placeholder="Password"> </div>'+
-                    '</div>';
+                    let message2 =
+                        '<div class="form-row align-items-center">' +
+                        '    <div class="col-12">' +
+                        '        <label class="sr-only" for="inlineFormInput">Username</label>' +
+                        '        <input type="text" class="form-control mb-2" id="UsernameSignup" placeholder="Username"> </div>' +
+                        '    <div class="col-12">' +
+                        '        <label class="sr-only" for="inlineFormInputGroup">Password</label>' +
+                        '        <input type="password" class="form-control" id="PasswordSignup" placeholder="Password"> </div>' +
+                        '</div>';
                     let buttons2 = {
                         LogInForms: {
                             label: 'Sign Up',
@@ -238,3 +236,37 @@ $("#LogInForm").on("click", () => {
     };
     Bootbox(message, title, buttons);
 });
+
+function LoadPageContent(PageName) {
+    // Getting elements from server and saving the in the variable data
+    $.get(`/visteWeb/${PageName}.html`, function(response) {
+        console.log("file: ", response)
+        $("#main").append($(response))
+    });
+}
+
+function BrasaMain() {
+    $("#main").html("")
+}
+
+function ChangePage(PageName) {
+
+    BrasaMain()
+    LoadPageContent(PageName)
+
+}
+
+$("#1Link").on("click", () => {
+    ChangePage("home")
+    closeNav()
+})
+$("#2Link").on("click", () => {
+    ChangePage("meme")
+    closeNav()
+})
+$("#3Link").on("click", () => {
+    ChangePage("administrator")
+    loadScript("js/administrator.js")
+    loadScript('../plugins/datatable/datatables.min.js');
+    closeNav()
+})

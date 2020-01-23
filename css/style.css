@@ -90,6 +90,11 @@ body {
     padding: 16px;
 }
 
+.nav-class {
+    cursor: pointer;
+    color: white !important;
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
