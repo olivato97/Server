@@ -239,34 +239,33 @@ $("#LogInForm").on("click", () => {
 
 function LoadPageContent(PageName) {
     // Getting elements from server and saving the in the variable data
-    $.get(`/visteWeb/${PageName}.html`, function(response) {
-        console.log("file: ", response)
-        $("#main").append($(response))
+    $.get(`/visteWeb/${PageName}/${PageName}.html`, function(response) {
+        console.log("file: ", response);
+        $("#main").append($(response));
     });
 }
 
 function BrasaMain() {
-    $("#main").html("")
+    $("#main").html("");
 }
 
 function ChangePage(PageName) {
 
-    BrasaMain()
-    LoadPageContent(PageName)
+    BrasaMain();
+    LoadPageContent(PageName);
 
 }
 
 $("#1Link").on("click", () => {
-    ChangePage("home")
-    closeNav()
+    ChangePage("home");
+    closeNav();
 })
 $("#2Link").on("click", () => {
-    ChangePage("meme")
-    closeNav()
+    ChangePage("meme");
+    closeNav();
 })
 $("#3Link").on("click", () => {
-    ChangePage("administrator")
-    loadScript("js/administrator.js")
-    loadScript('../plugins/datatable/datatables.min.js');
+    ChangePage("administrator");
+
     closeNav()
 })
