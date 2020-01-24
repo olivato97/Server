@@ -241,31 +241,23 @@ function LoadPageContent(PageName) {
     // Getting elements from server and saving the in the variable data
     $.get(`/visteWeb/${PageName}/${PageName}.html`, function(response) {
         console.log("file: ", response);
-        $("#main").append($(response));
+        $("#page-wrapper").append($(response));
     });
 }
 
 function BrasaMain() {
-    $("#main").html("");
+    $("#page-wrapper").html("");
 }
 
 function ChangePage(PageName) {
-
     BrasaMain();
     LoadPageContent(PageName);
-
 }
 
-$("#1Link").on("click", () => {
-    ChangePage("home");
+$(".menu-element").off('click').on("click", function() {
+    var oggettoCliccato = $(this);
+    var pagina = oggettoCliccato.data('pagename').toLowerCase();
+    // console.log(pagina);
+    ChangePage(pagina);
     closeNav();
-})
-$("#2Link").on("click", () => {
-    ChangePage("meme");
-    closeNav();
-})
-$("#3Link").on("click", () => {
-    ChangePage("administrator");
-
-    closeNav()
 })

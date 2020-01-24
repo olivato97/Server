@@ -34,12 +34,12 @@
     </nav>
     <div id="wrap" class="wrap"></div>
     <div id="mySidenav" class="sidenav">
-        <a id="1Link" class="nav-item nav-link nav-class">Home</a>
-        <a id="2Link" class="nav-item nav-link nav-class">Meme</a>
-        <a id="3Link" class="nav-item nav-link nav-class">Administration</a>
+        <div class="nav-item nav-link nav-class menu-element" data-pagename="home">Home</div>
+        <div class="nav-item nav-link nav-class menu-element" data-pagename="meme">Meme</div>
+        <div class="nav-item nav-link nav-class menu-element" data-pagename="administrator">Administration</div>
     </div>
 
-    <div id="main">
+    <div id="page-wrapper">
 
 
     </div>
@@ -49,7 +49,6 @@
 <script src="js/main.js"></script>
 <script>
     $(document).ready(function() {
-        console.log();
         loadScript("/plugins/popper/popper.min.js");
         loadScript("/plugins/bootstrap-material-design-dist/js/bootstrap-material-design.js");
         loadScript("/plugins/bootstrap/js/bootstrap.min.js");
