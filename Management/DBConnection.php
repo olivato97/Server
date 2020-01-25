@@ -4,32 +4,38 @@ Classe che gestisce la connessione al DB
 */
 class DBConnection {
 
-    private $jsonConnectionString;
-    private $connection;
+    private static $jsonConnectionString;
+    private static $connection;
 
     /*
     Carica nella variabile della classe la stringa json con i dati
     del Database richiesto e poi crea la connessione
     */
-    private static function caricaDB($databaseKey) {
-        $this->$jsonConnectionString = json_decode(file_get_contents("../connectionString-.json"), true);
-        setDBConnection($jsonConnectionString, $databaseKey);
+    private static function caricaDB() {
+        //$self::$jsonConnectionString = json_decode(file_get_contents("../connectionString-.json"), true);
+        //self::$jsonConnectionString = "";
+        $databaseKey = "test";
+        DBConnection::setDBConnection(self::$jsonConnectionString, $databaseKey);
     }
 
     /*
     Crea la connessione e la setta nella variabile private della classe
     */
     private static function setDBConnection($jsonConnectionString, $databaseKey) {
-        $hostname = $jsonConnectionString["hostname"];
-        $username = $jsonConnectionString["username"];
-        $password = $jsonConnectionString["password"];
-        $password = $jsonConnectionString["password"];
-        $database = $jsonConnectionString["databaseKey"];
+        // $hostname = $jsonConnectionString["hostname"];
+        // $username = $jsonConnectionString["username"];
+        // $password = $jsonConnectionString["password"];
+        // $password = $jsonConnectionString["password"];
+        // $database = $jsonConnectionString["databaseKey"];
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $database = "test";
         try {
-            $this->$connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+            self::$connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
             // set the PDO error mode to exception
-            $this->$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            //echo "Connected successfully";
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
@@ -70,11 +76,12 @@ class DBConnection {
     5 - Assegna a $resultSet il dataset ritornato dalla query
     */
     public static function execQuery($query, $param) {
-        caricaDB();
-        $tmp = $this->$connection->prepare(buildQuery($query, $param));
+        DBConnection::caricaDB();
+        $tmp = self::$connection->prepare(DBConnection::buildQuery($query, $param));
         $tmp->execute();
-        $resultSet = $tmp->fetchAll();
-        return $resultSet;
+        $resultSet = $tmp->fetchAll(PDO::FETCH_ASSOC);
+        self::$connection = null;
+        return json_encode($resultSet, true);
     }
 
 }

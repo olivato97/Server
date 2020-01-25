@@ -240,7 +240,7 @@ $("#LogInForm").on("click", () => {
 function LoadPageContent(PageName) {
     // Getting elements from server and saving the in the variable data
     $.get(`/visteWeb/${PageName}/${PageName}.html`, function(response) {
-        console.log("file: ", response);
+        //console.log("file: ", response);
         $("#page-wrapper").append($(response));
     });
 }

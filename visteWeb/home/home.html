@@ -1,16 +1,26 @@
-<div>
+<body>
     <div>
-        <h1>Home</h1>
-    </div>
-    <button type="button" class="btn btn-primary">Primary</button>
-    <div class="dropdown">
-        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="material-icons">more_vert</i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item disabled" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Another action</button>
+        <div>
+            <h1>Home</h1>
+        </div>
+        <button id="ciao" type="button" class="btn btn-primary">Primary</button>
+        <div class="dropdown">
+            <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
+                <button class="dropdown-item" type="button">Action</button>
+                <button class="dropdown-item disabled" type="button">Another action</button>
+                <button class="dropdown-item" type="button">Another action</button>
+            </div>
         </div>
     </div>
-</div>
+</body>
+
+<script>
+    $(document).ready(function() {
+        loadScript("/visteWeb/home/home.js");
+        var home = new Home();
+        home.initPagina();
+    });
+</script>

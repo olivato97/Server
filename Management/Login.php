@@ -3,6 +3,7 @@
 Classe di gestione del login
 */
 require_once("../Beans/Utente.php");
+require_once("../DAO/DAOUtente.php");
 
 class Login {
 
@@ -12,7 +13,8 @@ class Login {
 
     public function eseguiLogIn($username, $password) {
         $utente = new Utente();
-        return json_encode($utente);
+        $prova = DAOUtente::getUtente("ciao");
+        return $prova;
     }
 
     public function eseguiLogOut() {
