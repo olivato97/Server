@@ -9,6 +9,11 @@ Setta inoltre le variabili di sessione a cui le altre pagine faranno riferimento
 require_once("../Management/Login.php");
 require_once("../Management/CustomExceptioon.php");
 
+// Apertura di una sessione se non è già presente
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Variabili possibili dell'handler
 $action = $_POST["action"];
 
@@ -35,6 +40,7 @@ $classeLogin = new Login();
 switch ($action) {
     case "login":
         echo $classeLogin->eseguiLogIn("ciao", "ciao");
+        //echo $_SESSION["databaseKey"];
         break;
     case "logout":
         return $classeLogin.eseguiLogOut();

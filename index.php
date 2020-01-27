@@ -1,3 +1,19 @@
+<?php
+/*
+Visto che useremo solo questa pagina per caricare tutte le altre viste
+conviene creare la sessione e dopo usarla in tutti gli handler
+*/
+// session_destroy();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+    if (!isset($_SESSION["databaseKey"])) {
+        $_SESSION["databaseKey"] = "localhostLocale";
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 

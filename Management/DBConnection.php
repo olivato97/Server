@@ -12,25 +12,19 @@ class DBConnection {
     del Database richiesto e poi crea la connessione
     */
     private static function caricaDB() {
-        //$self::$jsonConnectionString = json_decode(file_get_contents("../connectionString-.json"), true);
-        //self::$jsonConnectionString = "";
-        $databaseKey = "test";
-        DBConnection::setDBConnection(self::$jsonConnectionString, $databaseKey);
+        self::$jsonConnectionString = json_decode(file_get_contents("../connectionString-.json"), true);
+        $databaseKey = $_SESSION["databaseKey"];
+        DBConnection::setDBConnection(self::$jsonConnectionString[$databaseKey], $databaseKey);
     }
 
     /*
     Crea la connessione e la setta nella variabile private della classe
     */
     private static function setDBConnection($jsonConnectionString, $databaseKey) {
-        // $hostname = $jsonConnectionString["hostname"];
-        // $username = $jsonConnectionString["username"];
-        // $password = $jsonConnectionString["password"];
-        // $password = $jsonConnectionString["password"];
-        // $database = $jsonConnectionString["databaseKey"];
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "test";
+        $servername = $jsonConnectionString["servername"];
+        $username = $jsonConnectionString["username"];
+        $password = $jsonConnectionString["password"];
+        $database = $jsonConnectionString["database"];
         try {
             self::$connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
             // set the PDO error mode to exception

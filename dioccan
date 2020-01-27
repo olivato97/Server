@@ -1,0 +1,265 @@
+
+var File = function (args) {
+    this.args = args;
+    this.tab = '';
+};
+
+
+/*
+SEZIONE DATATABLE
+*/
+
+File.prototype.initTabella = function (idPersona) {
+    var _this = this;
+
+    if (_this.tab == '') {
+        _this.caricaTabella(idPersona);
+    } else {
+        _this.ricaricaTabella(idPersona);
+    }
+
+};
+
+File.prototype.caricaTabella = function (idPersona) {
+    var _this = this;
+
+    _this.initDtButtons();
+    _this.initDtColumns();
+
+    var url = "/Handler/File.php?action=caricaReportMnnteOre&idPersona=" + idPersona;
+
+    _this.tab = $('#dataTables-tabella').DataTable({
+        responsive: true,
+        lengthChange: false,
+        select: false,
+        autoWidth: false,
+        dom: "HFBfrtip",
+        paging: true,
+        deferRender: true,
+        stateSave: true,
+        colReorder: true,
+        pagingType: "full_numbers",
+        rowId: 'idCorso',
+        lengthMenu: [
+            [10, 25, 50, 100],
+            ['10 righe', '25 righe', '50 righe', '100 righe']
+        ],
+        language: {
+            paginate: {
+                first: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>',
+                previous: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+                next: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+                last: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>'
+            },
+            info: "Pagina _PAGE_ di _PAGES_",
+            infoEmpty: "",
+            infoFiltered: "",
+            zeroRecords: "Nessun record trovato",
+            emptyTable: "Nessun record disponibile",
+            search: '<i class="fa fa-search" aria-hidden="true"></i>',
+            select: {
+                rows: '%d Record Selezionati'
+            }
+        },
+        buttons: _this.dtButtons,
+        columns: _this.dtColumns,
+        ajax: {
+            "url": url,
+            "cache": false,
+            "dataSrc": function (json) {
+                return json.data;
+            }
+        }
+    });
+
+};
+
+File.prototype.ricaricaTabella = function (idPersona) {
+    var _this = this;
+
+    var url = "/Handler/File.php?action=caricaReportMnnteOre&idPersona=" + idPersona;
+
+    _this.tab.clear().draw();
+    $('#dataTables-tabella').DataTable().ajax.url(url);
+    $('#dataTables-tabella').DataTable().ajax.reload(null, true);
+    _this.tab = $('#dataTables-tabella').DataTable();
+
+};
+
+
+File.prototype.getDtButtonIndex = function (key) {
+    var _this = this;
+    var index = _this.dtButtonMap[key];
+    return index === undefined ? -1 : index;
+};
+
+File.prototype.enableDisableDtButton = function (key, table, enabled) {
+    var _this = this;
+    var index = _this.getDtButtonIndex(key);
+    if (index !== -1)
+        table.button(index).enable(enabled);
+};
+
+File.prototype.getDtColumnIndex = function (key) {
+    var _this = this;
+    var index = _this.dtColumnMap[key];
+    return index === undefined ? -1 : index;
+};
+
+File.prototype.initDtButtons = function () {
+    var _this = this;
+
+    _this.dtButtons = [];
+    _this.dtButtonMap = {};
+
+    _this.dtButtons.push({
+        extend: 'collection',
+        text: _T('ESPORTA', LINGUA),
+        autoClose: true,
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: function (idx, data, node) {
+                        return _this.tab.column(idx).visible();
+                    }
+                },
+                text: 'Copia Tabella'
+            },
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: function (idx, data, node) {
+                        return _this.tab.column(idx).visible();
+                    }
+                },
+                title: "File " + moment().format('L')
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: function (idx, data, node) {
+                        return _this.tab.column(idx).visible();
+                    }
+                },
+                title: "File " + moment().format('L')
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: function (idx, data, node) {
+                        return _this.tab.column(idx).visible();
+                    }
+                },
+                pageSize: 'LEGAL',
+                text: 'PDF Verticale',
+                title: "File " + moment().format('L')
+            },
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: function (idx, data, node) {
+                        return _this.tab.column(idx).visible();
+                    }
+                },
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                text: 'PDF Orizzontale',
+                title: "File " + moment().format('L')
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: function (idx, data, node) {
+                        return _this.tab.column(idx).visible();
+                    }
+                },
+                text: 'Stampa'
+            }
+        ]
+    });
+    _this.dtButtonMap.ESPORTA = 0;
+
+    _this.dtButtons.push({
+        extend: "colvis",
+        text: _T('COLONNE', LINGUA),
+        collectionLayout: 'fixed two-column',
+        postfixButtons: [
+            {
+                extend: 'colvisRestore',
+                text: 'Reset Colonne',
+                init: function (dt, button, conf) {
+                    conf._visOriginal = dt.columns().indexes().map(function (idx) {
+                        return dt.column(idx).visible();
+                    }).toArray();
+                },
+                action: function (e, dt, button, conf) {
+                    dt.state.clear();
+                    dt.columns().every(function (i) {
+                        // Take into account that ColReorder might have disrupted our
+                        // indexes
+                        var idx = dt.colReorder && dt.colReorder.transpose ?
+                            dt.colReorder.transpose(i, 'toOriginal') :
+                            i;
+
+                        this.visible(conf._visOriginal[idx]);
+                    });
+
+                    dt.colReorder.reset();
+                }
+            }
+        ]
+    });
+    _this.dtButtonMap.COLONNE = 1;
+
+    _this.dtButtons.push({
+        extend: 'pageLength',
+        text: _T('RIGHE_VISIBILI', LINGUA)
+    });
+    _this.dtButtonMap.RIGHE_VISIBILI = 2;
+
+};
+
+File.prototype.initDtColumns = function () {
+    var _this = this;
+
+    var dtColHtml =
+        '<tr>' +
+        '<th><label>' + _T('COGNOME', LINGUA) + '</label></th>' +
+        '<th><label>' + _T('NOME', LINGUA) + '</label></th>' +
+        '<th><label>' + _T('USERNAME', LINGUA) + '</label></th>' +
+        '</tr>';
+
+    $('#dataTables-tabella thead').html(dtColHtml);
+    $('#dataTables-tabella tfoot').html(dtColHtml);
+
+    _this.dtColumns = [];
+    var i = 0;
+    var dtColumnMap = {};
+
+    _this.dtColumns.push({ data: "cognomePersona" });
+    dtColumnMap.COGNOME = i;
+
+    _this.dtColumns.push({ data: "nomePersona" });
+    dtColumnMap.NOME = ++i;
+
+    _this.dtColumns.push({ data: "usernamePersona" });
+    dtColumnMap.USERNAME = ++i;
+
+    _this.dtColumnMap = dtColumnMap;
+};
+
+
+
+    <div class="col-lg-12 table-bord-bottom hidden" id="divTable">
+        <div class="dataTable_wrapper" id="dtTable" style="overflow: auto">
+            <table class="display dataTable table table-striped table-bordered table-hover" id="dataTables-tabella">
+                <thead>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+    </div>
