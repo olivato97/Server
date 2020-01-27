@@ -21,4 +21,21 @@ Home.prototype.initPagina = function() {
     
     });
 
+    $('#addio').on('click', function() {
+        var objParam = {};
+        objParam.action = "logout";
+        $.ajax({
+            url: '/Handler/LoginHandler.php',
+            data: objParam,
+            type: "POST",
+            cache: false,
+        }).done(function (response) {
+            var obj = JSON.parse(response);
+            if (obj.status) {
+                window.location.reload();
+            }
+        });
+    
+    });
+
 };

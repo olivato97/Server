@@ -68,6 +68,7 @@ class DBConnection {
     3 - Aggiunge a tmp (variabile locale) la query con il prepare
     4 - Esegue la query
     5 - Assegna a $resultSet il dataset ritornato dalla query
+    6 - Ritorna il risulato della query sotto forma di JSON
     */
     public static function execQuery($query, $param) {
         DBConnection::caricaDB();
@@ -75,7 +76,8 @@ class DBConnection {
         $tmp->execute();
         $resultSet = $tmp->fetchAll(PDO::FETCH_ASSOC);
         self::$connection = null;
-        return json_encode($resultSet, true);
+        // return json_encode($resultSet, true);
+        return $resultSet;
     }
 
 }

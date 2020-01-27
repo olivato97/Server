@@ -39,11 +39,10 @@ $classeLogin = new Login();
 
 switch ($action) {
     case "login":
-        echo $classeLogin->eseguiLogIn("ciao", "ciao");
-        //echo $_SESSION["databaseKey"];
+        echo $classeLogin->eseguiLogIn("admin", "password", false);
         break;
     case "logout":
-        return $classeLogin.eseguiLogOut();
+        echo $classeLogin->eseguiLogOut();
         break;
 }
 ?>
