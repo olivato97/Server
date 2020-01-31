@@ -31,19 +31,18 @@ class DAOUtente {
     */
     public static function checkLogin($user, $pass, $noPassword) {
         $query = "
-        SELECT intIdPersona
-        FROM Persone
-        WHERE (
-                strUserNamePersona = :user
-                /* OR strEmailPersona = :user */
-            )
-            
-            AND (
-                strPasswordPersona = :pass
-                OR :noPass = 1
-            )
-            
+            SELECT intIdPersona
+            FROM Persone
+            WHERE (
+                    strUserNamePersona = :user
+                    /* OR strEmailPersona = :user */
+                )
+                AND (
+                    strPasswordPersona = :pass
+                    OR :noPass = 1
+                )
         ";
+        
         $param = [
             ":user" => $user,
             ":pass" => md5($pass),

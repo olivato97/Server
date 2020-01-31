@@ -2,7 +2,9 @@
 File main globale con metodi di utlità a tutte le pagine
 */
 // Variabili Globali
-var attivaConsoleLog = true;
+
+
+
 // Inserisce uno script nell'head della pagina
 // il parametro passato è una stringa che corrisponde al path
 // dello script che si vuole caricare
@@ -151,6 +153,8 @@ function functionNotify(objNotify) {
     });
 }
 
+
+// Funzioni per il controllo del comportamento del menù laterale
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("wrap").style.display = "block"
@@ -164,7 +168,8 @@ $("#wrap").on("click", function() {
     closeNav()
 });
 
-//funzione base per la creazione delle Bootbox per il LogIn e SignUp
+
+// Funzione base per la creazione delle Bootbox per il LogIn e SignUp
 function Bootbox(message = " ", title = " ", buttons = {}) {
     bootbox.dialog({
         title: title,
@@ -176,7 +181,8 @@ function Bootbox(message = " ", title = " ", buttons = {}) {
     });
 }
 
-//funzione chiamata per fare il LogIn o il SingUp
+
+// Funzione chiamata per fare il LogIn o il SingUp
 $("#LogInForm").on("click", () => {
     let title = "Log In";
     let message =
@@ -237,6 +243,9 @@ $("#LogInForm").on("click", () => {
     Bootbox(message, title, buttons);
 });
 
+
+// Carica nel page-wrapper l'html della pagina richiesta
+// cercandola nel path all'interno di visteWeb
 function LoadPageContent(PageName) {
     // Getting elements from server and saving the in the variable data
     $.get(`/visteWeb/${PageName}/${PageName}.html`, function(response) {
@@ -245,20 +254,26 @@ function LoadPageContent(PageName) {
     });
 }
 
+
+// Come dice il nome, cancella il contentuto del page-wrapper
 function BrasaMain() {
     $("#page-wrapper").html("");
 }
 
+
+// Funzione aggregata che prima svuota il page-wrapper
+// e dopo carica la pagina richiesta
 function ChangePage(PageName) {
     BrasaMain();
     LoadPageContent(PageName);
 }
 
+
+// Handler che aggiunge un comportamento ai bottoni del menù laterale
 $(".menu-element").off('click').on("click", function() {
     var oggettoCliccato = $(this);
     var pagina = oggettoCliccato.data('pagename').toLowerCase();
     // console.log(pagina);
     ChangePage(pagina);
     closeNav();
-})
-
+});

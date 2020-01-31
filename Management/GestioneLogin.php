@@ -30,15 +30,16 @@ class Login {
             $resultSet = DAOUtente::getUtente($idPersona);
             foreach($resultSet as $row) {
                 $response["status"] = true;
-                $response["idPersona"] = $row['intIdPersona'];
-                $response["username"] = $row['strUsernamePersona'];
-                $response["nomePersona"] = $row['strNomePersona'];
-                $response["cognomePersona"] = $row['strCognomePersona'];
-                $response["forzaAggiornamento"] = $row['boolForzaAggiornamento'];
-                $response["confermaRegistrazione"] = $row['booConfermataRegistrazione'];
+                $infoUtente = new Utente();
+                $infoUtente->setId($row['intIdPersona']);
+                $infoUtente->setNUsername($row['strUsernamePersona']);
+                $infoUtente->setNome($row['strNomePersona']);
+                $infoUtente->setCognome($row['strCognomePersona']);
+                $infoUtente->setForzaAggiornamento($row['boolForzaAggiornamento']);
+                $infoUtente->setConfermataRegistrazione($row['booConfermataRegistrazione']);
+                $response["infoUtente"] = $infoUtente->getJson();
             }
         }
-
         return json_encode($response);
     }
 

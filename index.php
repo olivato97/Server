@@ -3,14 +3,10 @@
 Visto che useremo solo questa pagina per caricare tutte le altre viste
 conviene creare la sessione e dopo usarla in tutti gli handler
 */
-// session_destroy();
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    if (!isset($_SESSION["databaseKey"])) {
-        $_SESSION["databaseKey"] = "localhostLocale";
-    }
+include_once('Management/InitSession.php');
+if (!isset($_SESSION["databaseKey"])) {
+    $_SESSION["databaseKey"] = "localhostLocale";
 }
-
 
 ?>
 
@@ -66,7 +62,8 @@ if (session_status() == PHP_SESSION_NONE) {
         loadScript("/plugins/bootbox/bootbox.min.js");
         loadScript("/plugins/bootbox/bootbox.locales.min.js");
         loadScript('/plugins/bootstrap-notify/bootstrap-notify.min.js');
-        LoadPageContent("home")
+
+        ChangePage("home");
     });
 </script>
 

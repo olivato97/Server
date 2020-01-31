@@ -5,14 +5,14 @@ dal sito.
 Setta inoltre le variabili di sessione a cui le altre pagine faranno riferimento
 */
 
+
 // Classi di riferimento
-require_once("../Management/Login.php");
+require_once("../Management/GestioneLogin.php");
 require_once("../Management/CustomExceptioon.php");
 
+
 // Apertura di una sessione se non è già presente
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include_once('../Management/InitSession.php');
 
 // Variabili possibili dell'handler
 $action = $_POST["action"];
@@ -35,11 +35,20 @@ try {
     $password = "";
 }
 
+try {
+    if (!isset($_POST["noPassword"])) {
+        throw new CustomExceptioon();
+    }
+    $noPassword = $_POST["noPassword"];
+} catch (Exception $e) {
+    $noPassword = "";
+}
+
 $classeLogin = new Login();
 
 switch ($action) {
     case "login":
-        echo $classeLogin->eseguiLogIn("admin", "password", false);
+        echo $classeLogin->eseguiLogIn($username, $password, $noPassword);
         break;
     case "logout":
         echo $classeLogin->eseguiLogOut();
