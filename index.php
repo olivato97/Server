@@ -61,8 +61,7 @@ if (!isset($_SESSION["databaseKey"])) {
         loadScript("/plugins/bootbox/bootbox.min.js");
         loadScript("/plugins/bootbox/bootbox.locales.min.js");
         loadScript('/plugins/bootstrap-notify/bootstrap-notify.min.js');
-        setPermision("#mySidenav")
-        SetButtonHandler("home")
+        loadScript('/plugins/md5/md5.min.js');
         ChangePage("home");
     });
 </script>

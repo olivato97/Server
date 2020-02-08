@@ -2,7 +2,7 @@
 File main globale con metodi di utlità a tutte le pagine
 */
 // Variabili Globali
-const Permissions = ["administrator", "meme"]
+const Permissions = ["administrator", "meme"];
 
 
 // Inserisce uno script nell'head della pagina
@@ -235,6 +235,7 @@ $("#LogInForm").on("click", () => {
                 if (result) {
                     let usernameLogin = $("#UsernameLogin").val();
                     let passwordLogin = $("#PasswordLogin").val();
+                    logIn(usernameLogin, passwordLogin, false);
                     successNotify(usernameLogin + " " + passwordLogin);
                 }
             }
@@ -285,4 +286,50 @@ function setPermision(params) {
         $(params).append(c)
     })
     SetButtonHandler()
+}
+
+
+// Chiamata all'autenticazione per il login
+// Parametri: username e password (verrà convertita in md5)
+// noPassword, parametro che di default sarebbe a false
+// serve per loggarsi utilizzando solo l'username
+function logIn(username, password, noPassword) {
+    var objParam = {};
+    objParam.action = "login";
+    objParam.username = username;
+    objParam.password = md5(password);
+    objParam.noPassword = noPassword;
+
+    $.ajax({
+        url: '/Handler/LoginHandler.php',
+        data: objParam,
+        type: "POST",
+        cache: false,
+    }).done(function (response) {
+        var obj = JSON.parse(response);
+
+    });
+
+}
+
+
+// Esegue il logout chiudendo la sessione
+// resettando tutte le variabili lato client
+// e ricaricando la pagina alla home
+function logOut() {
+    var objParam = {};
+    objParam.action = "logout";
+
+    $.ajax({
+        url: '/Handler/LoginHandler.php',
+        data: objParam,
+        type: "POST",
+        cache: false,
+    }).done(function (response) {
+        var obj = JSON.parse(response);
+        if (obj.status) {
+            window.location.reload();
+        }
+    });
+
 }
