@@ -12,7 +12,7 @@ class DBConnection {
     del Database richiesto e poi crea la connessione
     */
     private static function caricaDB() {
-        self::$jsonConnectionString = json_decode(file_get_contents("../connectionString-.json"), true);
+        self::$jsonConnectionString = json_decode(file_get_contents("../connectionString.json"), true);
         $databaseKey = $_SESSION["databaseKey"];
         DBConnection::setDBConnection(self::$jsonConnectionString[$databaseKey], $databaseKey);
     }

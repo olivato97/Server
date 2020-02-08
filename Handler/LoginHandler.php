@@ -44,7 +44,7 @@ try {
     $noPassword = "";
 }
 
-$classeLogin = new Login();
+$classeLogin = new GestioneLogin();
 
 switch ($action) {
     case "login":

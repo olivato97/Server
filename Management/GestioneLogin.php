@@ -4,8 +4,9 @@ Classe di gestione del login
 */
 require_once("../Beans/Utente.php");
 require_once("../DAO/DAOUtente.php");
+require_once("GestioneUtente.php");
 
-class Login {
+class GestioneLogin {
 
     public function __construct() {
 
@@ -38,7 +39,9 @@ class Login {
                 $infoUtente->setForzaAggiornamento($row['boolForzaAggiornamento']);
                 $infoUtente->setConfermataRegistrazione($row['booConfermataRegistrazione']);
                 $response["infoUtente"] = $infoUtente->getJson();
+                $response["moduliPermessi"] = $infoUtente->getId();
             }
+
         }
         return json_encode($response);
     }
