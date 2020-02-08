@@ -42,8 +42,7 @@ if (!isset($_SESSION["databaseKey"])) {
     <div id="wrap" class="wrap"></div>
     <div id="mySidenav" class="sidenav">
         <div class="nav-item nav-link nav-class menu-element" data-pagename="home">Home</div>
-        <div class="nav-item nav-link nav-class menu-element" data-pagename="meme">Meme</div>
-        <div class="nav-item nav-link nav-class menu-element" data-pagename="administrator">Administration</div>
+
     </div>
 
     <div id="page-wrapper">
@@ -62,7 +61,8 @@ if (!isset($_SESSION["databaseKey"])) {
         loadScript("/plugins/bootbox/bootbox.min.js");
         loadScript("/plugins/bootbox/bootbox.locales.min.js");
         loadScript('/plugins/bootstrap-notify/bootstrap-notify.min.js');
-
+        setPermision("#mySidenav")
+        SetButtonHandler("home")
         ChangePage("home");
     });
 </script>

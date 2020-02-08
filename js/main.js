@@ -2,7 +2,7 @@
 File main globale con metodi di utlità a tutte le pagine
 */
 // Variabili Globali
-
+const Permissions = ["administrator", "meme"]
 
 
 // Inserisce uno script nell'head della pagina
@@ -270,10 +270,19 @@ function ChangePage(PageName) {
 
 
 // Handler che aggiunge un comportamento ai bottoni del menù laterale
-$(".menu-element").off('click').on("click", function() {
-    var oggettoCliccato = $(this);
-    var pagina = oggettoCliccato.data('pagename').toLowerCase();
-    // console.log(pagina);
-    ChangePage(pagina);
-    closeNav();
-});
+function SetButtonHandler() {
+    $(".menu-element").off("click").on("click", function() {
+        var oggettoCliccato = $(this);
+        var pagina = oggettoCliccato.data('pagename').toLowerCase();
+        ChangePage(pagina);
+        closeNav();
+    });
+}
+// appende le pagine in basi ai permessi ricevuti
+function setPermision(params) {
+    Permissions.forEach((Permission) => {
+        var c = `<div class="nav-item nav-link nav-class menu-element" data-pagename="${Permission}">${Permission}</div>`
+        $(params).append(c)
+    })
+    SetButtonHandler()
+}
