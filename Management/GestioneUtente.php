@@ -13,7 +13,6 @@ class GestioneUtente {
 
     // Estrae i permessi / profili dell'utente
     public function getProfiliPermessiUtente($idUtente) {
-
     }
 
 

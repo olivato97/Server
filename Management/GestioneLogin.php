@@ -30,7 +30,6 @@ class GestioneLogin {
             $idPersona = $checkLogin[0]["intIdPersona"];
             $resultSet = DAOUtente::getUtente($idPersona);
             foreach($resultSet as $row) {
-                $response["status"] = true;
                 $infoUtente = new Utente();
                 $infoUtente->setId($row['intIdPersona']);
                 $infoUtente->setNUsername($row['strUsernamePersona']);
@@ -40,6 +39,7 @@ class GestioneLogin {
                 $infoUtente->setConfermataRegistrazione($row['booConfermataRegistrazione']);
                 $response["infoUtente"] = $infoUtente->getJson();
                 $response["moduliPermessi"] = $infoUtente->getId();
+                $response["status"] = true;
             }
 
         }
