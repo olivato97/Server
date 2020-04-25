@@ -1,122 +1,53 @@
 <head>
-
     <link rel="stylesheet" href="plugins/datatable/DataTables-1.10.20/css/dataTables.bootstrap4.css">
 </head>
 
 <body>
+    <!-- BOTTONI TAB -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Utenti</a>
+        <li class="nav-item" id="li-utenti-tab">
+            <a class="nav-link active" id="utenti-tab" data-toggle="tab" href="#utenti" role="tab">Utenti</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+        <li class="nav-item" id="li-profili-tab">
+            <a class="nav-link" id="profili-tab" data-toggle="tab" href="#profili" role="tab">Profili</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+        <li class="nav-item" id="li-permessi-tab">
+            <a class="nav-link" id="permessi-tab" data-toggle="tab" href="#permessi" role="tab">Permessi</a>
         </li>
     </ul>
+
+    <!-- DIV CONTENUTI -->
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <table id="table" class="display" style="width:100%">
+        <!-- TABELLA UTENTI -->
+        <div class="tab-pane fade show active" id="utenti" role="tabpanel">
+            <table id="tableUtenti" class="display" style="width:100%">
                 <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Zorita Serrano</td>
-                        <td>Software Engineer</td>
-                        <td>San Francisco</td>
-                        <td>56</td>
-                        <td>2012/06/01</td>
-                        <td>$115,000</td>
-                    </tr>
-                    <tr>
-                        <td>Jennifer Acosta</td>
-                        <td>Junior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>43</td>
-                        <td>2013/02/01</td>
-                        <td>$75,650</td>
-                    </tr>
-                    <tr>
-                        <td>Cara Stevens</td>
-                        <td>Sales Assistant</td>
-                        <td>New York</td>
-                        <td>46</td>
-                        <td>2011/12/06</td>
-                        <td>$145,600</td>
-                    </tr>
-                    <tr>
-                        <td>Hermione Butler</td>
-                        <td>Regional Director</td>
-                        <td>London</td>
-                        <td>47</td>
-                        <td>2011/03/21</td>
-                        <td>$356,250</td>
-                    </tr>
-                    <tr>
-                        <td>Lael Greer</td>
-                        <td>Systems Administrator</td>
-                        <td>London</td>
-                        <td>21</td>
-                        <td>2009/02/27</td>
-                        <td>$103,500</td>
-                    </tr>
-                    <tr>
-                        <td>Jonas Alexander</td>
-                        <td>Developer</td>
-                        <td>San Francisco</td>
-                        <td>30</td>
-                        <td>2010/07/14</td>
-                        <td>$86,500</td>
-                    </tr>
-                    <tr>
-                        <td>Shad Decker</td>
-                        <td>Regional Director</td>
-                        <td>Edinburgh</td>
-                        <td>51</td>
-                        <td>2008/11/13</td>
-                        <td>$183,000</td>
-                    </tr>
-                    <tr>
-                        <td>Michael Bruce</td>
-                        <td>Javascript Developer</td>
-                        <td>Singapore</td>
-                        <td>29</td>
-                        <td>2011/06/27</td>
-                        <td>$183,000</td>
-                    </tr>
-                    <tr>
-                        <td>Donna Snider</td>
-                        <td>Customer Support</td>
-                        <td>New York</td>
-                        <td>27</td>
-                        <td>2011/01/25</td>
-                        <td>$112,000</td>
-                    </tr>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
                 </tfoot>
             </table>
-
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+
+        <!-- TABELLA PROFILI -->
+        <div class="tab-pane fade" id="profili" role="tabpanel">
+            <table id="tableProfili" class="display" style="width:100%">
+                <thead>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- TABELLA PERMESSI -->
+        <div class="tab-pane fade" id="permessi" role="tabpanel">
+            <table id="tablePermessi" class="display" style="width:100%">
+                <thead>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+        
     </div>
 
 </body>
@@ -128,5 +59,9 @@
         loadScript('/plugins/datatable/DataTables-1.10.20/js/jquery.dataTables.js');
         loadScript('/plugins/datatable/DataTables-1.10.20/js/dataTables.bootstrap4.min.js');
         loadScript("/visteWeb/administrator/administrator.js");
+
+        var amministrazione = new Administrator();
+        amministrazione.initPagina();
+
     });
 </script>

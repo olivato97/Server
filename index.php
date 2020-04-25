@@ -8,6 +8,8 @@ if (!isset($_SESSION["databaseKey"])) {
     $_SESSION["databaseKey"] = "localhostLocale";
 }
 
+$browserType = get_browser(NULL, true)["browser"];
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +30,7 @@ if (!isset($_SESSION["databaseKey"])) {
 </head>
 
 <body>
+    <?php if (trim($browserType) != "IE") {?>
     <nav class="navbar navbar-expand-lg">
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -49,6 +52,10 @@ if (!isset($_SESSION["databaseKey"])) {
 
 
     </div>
+    <?php } else { ?>
+        <p style="font-size: 50px;">USA UN BROWSER DECENTE</p>
+    <?php } ?>
+    
 </body>
 
 <script src="/plugins/jquery/jquery-3.4.1.min.js"></script>
@@ -62,6 +69,7 @@ if (!isset($_SESSION["databaseKey"])) {
         loadScript("/plugins/bootbox/bootbox.locales.min.js");
         loadScript('/plugins/bootstrap-notify/bootstrap-notify.min.js');
         loadScript('/plugins/md5/md5.min.js');
+        setPermision("#mySidenav");
         ChangePage("home");
     });
 </script>

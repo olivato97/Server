@@ -5,5 +5,4 @@ var Home = function () {
 
 Home.prototype.initPagina = function() {
     var _this = this;
-    
 };

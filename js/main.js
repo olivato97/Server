@@ -2,7 +2,7 @@
 File main globale con metodi di utlità a tutte le pagine
 */
 // Variabili Globali
-const Permissions = ["administrator", "meme"];
+var Permissions = ["administrator", "meme"];
 
 
 // Inserisce uno script nell'head della pagina
@@ -183,7 +183,7 @@ function Bootbox(message = " ", title = " ", buttons = {}) {
 
 
 // Funzione chiamata per fare il LogIn o il SingUp
-$("#LogInForm").on("click", () => {
+$("#LogInForm").on("click", function() {
     let title = "Log In";
     let message =
         '<div class="form-row align-items-center">' +
@@ -279,13 +279,15 @@ function SetButtonHandler() {
         closeNav();
     });
 }
+
+
 // appende le pagine in basi ai permessi ricevuti
 function setPermision(params) {
     Permissions.forEach((Permission) => {
         var c = `<div class="nav-item nav-link nav-class menu-element" data-pagename="${Permission}">${Permission}</div>`
         $(params).append(c)
     })
-    SetButtonHandler()
+    SetButtonHandler();
 }
 
 
@@ -333,3 +335,60 @@ function logOut() {
     });
 
 }
+
+
+/*
+Aggiunge / rimuove l'elemento dal DOM
+Può essere sia un id che una classe
+Stato: opzioni del metodo
+- 1: rimuove l'elemento
+- 2: appende il nuovoElemento all'elemento
+- 3: sostituisce il contenuto dell'elemento con il nuovoElemento
+- 4: svuota l'elemento
+*/
+function modificaElementoDOM(stato, elemento, nuovoElemento) {
+
+    switch (stato) {
+        case 1:
+            $(elemento).remove();
+            break;
+        case 2:
+            $(elemento).append(nuovoElemento);
+            break;
+        case 3:
+            $(elemento).html(nuovoElemento);
+            break;
+        case 4:
+            $(elemento).html();
+            break;
+        default:
+            console.log("0");
+            break;
+    }
+
+}
+
+
+// Cerco se ho il permesso nei moduli
+// Parametri:
+// type: "MODULO" - "PERMESSO"
+function checkModuloPermesso(type, chiave) {
+    switch (type) {
+        case "MODULO":
+            if (ModuliUtente.indexOf(chiave) >= 0) {
+                return true;
+            }
+            break;
+        case "PERMESSO":
+            if (PermessiUtente.indexOf(chiave) >= 0) {
+                return true;
+            }
+            break;
+        default:
+            return false;
+            break;
+    };
+
+}
+
+
