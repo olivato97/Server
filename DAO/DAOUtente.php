@@ -114,5 +114,20 @@ class DAOUtente {
     }
 
 
+    /*
+    Estrae tutti gli utenti registrati
+    */
+    public static function getListaUtenti() {
+        $query = "
+            SELECT *
+            FROM Persone
+        ";
+
+        //$param = [];
+
+        $result = DBConnection::execQuery($query);
+        return $result;
+    }
+
 }
 ?>

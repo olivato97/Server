@@ -2,7 +2,7 @@
 File main globale con metodi di utlità a tutte le pagine
 */
 // Variabili Globali
-var Permissions = ["administrator", "meme"];
+var Permissions = ["amministrazione", "meme"];
 
 
 // Inserisce uno script nell'head della pagina
